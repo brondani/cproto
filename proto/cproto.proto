@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+enum ID {
+  NONE = 0;
+  SHUTDOWN = 1;
+  GET_VERSION = 2;
+  LOAD_PACKS = 3;
+  LOAD_SOLUTION = 4;
+  LIST_COMPONENTS = 5;
+}
+
+message RequestEnvelope {
+  ID id = 1;
+  bytes payload = 2;
+}
+
+message ResponseEnvelope {
+  ID id = 1;
+  bool status = 3;
+  bytes payload = 2;
+  string error = 4;
+}
+
+message GetVersionResponse {
+  string version = 1;
+}
+
+message LoadSolutionRequest {
+  string solution = 1;
+  repeated string context = 2;
+}
+
+message ListComponentsResponse {
+  repeated string component = 1;
+}
